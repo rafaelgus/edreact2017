@@ -1,4 +1,4 @@
-# Repositorio del curso de React desde cero de ED Team 2017 impartido por @jonmircha
+# Repositorio del curso de React desde cero de EDteam 2017 impartido por @jonmircha
 
 ### [Ir al Curso](http://ed.team/cursos/react)
 
