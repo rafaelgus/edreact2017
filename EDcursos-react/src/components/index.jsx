@@ -7,18 +7,38 @@ import {
 	Switch
 } from 'react-router-dom'
 import { firebaseAuth } from '../data/config'
-
 import Home from './pages/'
 import About from './pages/About'
 import DashboardCourses from './pages/protected/'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import Error404 from './pages/Error404'
-import { logout } from './helper/Auth'
-
+import { logout } from './helpers/Auth'
 import 'pure-css/lib/menus.css'
 import './index.css'
 import EDteamLogo from './media/edteam-logo.png'
+
+const PrivateRoute = ( { component: Component, authed, rest } ) => (
+  <Route
+    {...rest}
+    render={
+      props => authed === true
+        ? <Component {...props} />
+        : <Redirect to={ { pathname: '/login', state: { from: props.location } } } />
+    }
+  />
+)
+
+const PublicRoute = ( { component: Component, authed, rest } ) => (
+  <Route
+    {...rest}
+    render={
+      props => authed === false
+        ? <Component {...props} />
+        : <Redirect to='/cursos' />
+    }
+  />
+)
 
 class App extends Component {
   constructor(...props) {
@@ -36,6 +56,14 @@ class App extends Component {
     //alert('click')
     document.getElementById('tuckedMenu').classList.toggle('custom-menu-tucked');
     document.getElementById('toggle').classList.toggle('x');
+  }
+
+  componentDidMount() {
+
+  }
+
+  componentWillUnmount() {
+
   }
 
   render() {
@@ -60,12 +88,35 @@ class App extends Component {
                   <li className="pure-menu-item">
                       <Link to="/acerca" className="pure-menu-link" onClick={this.handleOnClick}>Acerca</Link>
                   </li>
-                  <li className="pure-menu-item">
-                      <Link to="/registro" className="pure-menu-link" onClick={this.handleOnClick}>Registro</Link>
-                  </li>
-                  <li className="pure-menu-item">
-                      <Link to="/login" className="pure-menu-link" onClick={this.handleOnClick}>Login</Link>
-                  </li> 
+                  {
+                    (this.state.authed)
+                      ?
+                        <span>
+                          <li className="pure-menu-item">
+                            <Link to="/cursos" className="pure-menu-link" onClick={this.handleOnClick}>Cursos</Link>
+                          </li>
+                          <li className="pure-menu-item">
+                            <Link 
+                              to="/logout"
+                              className="pure-menu-link"
+                              onClick={() => {
+                                logout()
+                                this.setState( {authed: false} )
+                                this.handleOnClick()
+                              }}
+                            >Logout</Link>
+                          </li>
+                        </span>
+                      :
+                        <span>
+                          <li className="pure-menu-item">
+                              <Link to="/registro" className="pure-menu-link" onClick={this.handleOnClick}>Registro</Link>
+                          </li>
+                          <li className="pure-menu-item">
+                              <Link to="/login" className="pure-menu-link" onClick={this.handleOnClick}>Login</Link>
+                          </li>
+                        </span>
+                  }
                 </ul>
               </div>
             </header>
@@ -73,8 +124,9 @@ class App extends Component {
               <Switch>
                 <Route path='/' exact component={Home} />
                 <Route path='/acerca' component={About} />
-                <Route path='/login' component={Login} />
-                <Route path='/registro' component={Register} />
+                <PublicRoute authed={this.state.authed} path='/login' component={Login} />
+                <PublicRoute authed={this.state.authed} path='/registro' component={Register} />
+                <PrivateRoute authed={this.state.authed} path='/cursos' component={DashboardCourses} />
                 <Route component={Error404} />
               </Switch>
             </main>
