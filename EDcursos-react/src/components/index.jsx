@@ -10,12 +10,13 @@ import { firebaseAuth } from '../data/config'
 
 import Home from './pages/'
 import About from './pages/About'
-import Protegida from './pages/protected/'
+import DashboardCourses from './pages/protected/'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import Error404 from './pages/Error404'
+import { logout } from './helper/Auth'
 
-import 'pure-css'
+import 'pure-css/lib/menus.css'
 import './index.css'
 import EDteamLogo from './media/edteam-logo.png'
 
@@ -46,7 +47,7 @@ class App extends Component {
             <header className="custom-menu-wrapper">
               <div className="pure-menu custom-menu custom-menu-top">
                   <a href="#" className="pure-menu-heading custom-menu-brand">
-                    <img src={EDteamLogo} alt="EDteam"/>
+                    <img className="edteam-logo" src={EDteamLogo} alt="EDteam"/>
                   </a>
                   <a href="#" className="custom-menu-toggle" id="toggle" onClick={this.handleOnClick}><s className="bar"></s><s className="bar"></s></a>
               </div>

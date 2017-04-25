@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class Protegida extends Component {
+export default class DashboardCourses extends Component {
 	render() {
 		return (
 			<article className="Main-container">
