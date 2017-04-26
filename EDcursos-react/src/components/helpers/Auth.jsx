@@ -2,9 +2,12 @@ import { ref, firebaseAuth } from '../../data/config'
 
 const saveUser = (user) => (
   ref
-    .child()
-    .set({})
-    .then( () => {} )
+    .child(`users/${user.uid}/info`)
+    .set({
+      email: user.email,
+      uid: user.uid
+    })
+    .then(() => user)
 )
 
 const auth = (email, password) => (

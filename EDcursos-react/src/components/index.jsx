@@ -59,15 +59,26 @@ class App extends Component {
   }
 
   componentDidMount() {
-
+    this.removeListener = firebaseAuth().onAuthStateChanged( user => {
+      if (user) {
+        this.setState({
+          authed: true,
+          loading: false
+        })
+      } else {
+        this.setState({
+          loading: false
+        })
+      }
+    })
   }
 
   componentWillUnmount() {
-
+    this.removeListener()
   }
 
   render() {
-    return this.state.loading === false
+    return this.state.loading === true
       ? <h1>Cargando...</h1> 
       : (
         <Router>
