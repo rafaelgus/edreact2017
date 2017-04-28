@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
 import uid from 'uid'
-import $ from 'jquery'
 import { categories, courses, teachers } from '../../data/'
 import CourseAddForm from './CourseAddForm'
 import CoursesList from './CoursesList'
@@ -10,12 +9,10 @@ class Courses extends Component {
     super(...props)
 
     this.state = {
-      courses: []
+      courses: courses
     }
 
     this.handleOnAddCourse = this.handleOnAddCourse.bind(this)
-    this.fetchData = this.fetchData.bind(this)
-    this.resetData = this.resetData.bind(this)
   }
 
   handleOnAddCourse(e) {
@@ -24,9 +21,14 @@ class Courses extends Component {
 
     let form = e.target,
       course = {
-        id: ( form.id.value ) ? form.id.value : Courses.defaultProps.id,
-        name: ( form.name.value ) ? form.name.value : Courses.defaultProps.name,
-        teacher: ( form.teacher.value ) ? form.teacher.value : Courses.defaultProps.teacher
+        id: (form.id.value) ? form.id.value : Courses.defaultProps.id,
+        name: (form.name.value) ? form.name.value : Courses.defaultProps.name,
+        poster: (form.poster.value) ? form.poster.value : Courses.defaultProps.poster,
+        url: (form.url.value) ? form.url.value : Courses.defaultProps.url,
+        amount: (form.amount.value) ? form.amount.value : Courses.defaultProps.amount,
+        teacher: (form.teacher.value) ? form.teacher.value : Courses.defaultProps.teacher,
+        date: form.date.value ? form.date.value : Courses.defaultProps.date,
+        categories: (form.categories.value) ? form.categories.value.split(',') : Courses.defaultProps.categories
       }
 
     this.setState({
@@ -36,39 +38,19 @@ class Courses extends Component {
     form.reset()
   }
 
-  fetchData() {
-    /*setTimeout( () => this.setState( { courses:courses } ), 3000 )*/
-    $('#root')
-      .fadeOut( 3000, () => this.setState( { courses:courses } ) )
-      .fadeIn()
-  }
-
-  resetData() {
-    /*this.setState( { courses: [] } )*/
-    $('#root')
-      .fadeOut( 3000, () => this.setState( { courses:[] } ) )
-      .fadeIn()
-  }
-
-  componentDidMount() {
-    this.fetchData()
-  }
-
   render() {
     if ( !this.state.courses.length ) {
       return (
-        <div>
+        <article className="Main-container">
           <p>No hay cursos :(</p>
-          <button onClick={this.fetchData}>Cargar Cursos</button>
-        </div>
+        </article>
       )
     } else {
       return(
-        <div>
+        <article className="Main-container">
           <CourseAddForm onAddCourse={this.handleOnAddCourse} />
           <CoursesList courses={this.state.courses} />
-          <button onClick={this.resetData}>Borrar Cursos</button>
-        </div>
+        </article>
       )
     }
   }
@@ -77,13 +59,23 @@ class Courses extends Component {
 Courses.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  teacher: PropTypes.string.isRequired
+  poster: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
+  teacher: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  categories: PropTypes.array.isRequired
 }
 
 Courses.defaultProps = {
   id: uid(10),
   name: 'Curso Desconocido',
-  teacher: 'Profesor No Asignado'
+  poster: 'https://ed.team/sites/default/files/edteam-logo-118.png?2abr2017',
+  url: 'https://ed.team/cursos',
+  amount: 40,
+  teacher: 'Profesor No Asignado',
+  date: 'Fecha No Definida',
+  categories: ['Sin Categoría']
 }
 
 export default Courses

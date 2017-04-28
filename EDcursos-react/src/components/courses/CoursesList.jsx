@@ -3,7 +3,7 @@ import Course  from './Course'
 import './courses-list.css'
 
 const CoursesList = ( props ) => (
-  <ul>
+  <ul className="CoursesList">
     {
       props.courses.map(course => (
         <Course
@@ -17,7 +17,7 @@ const CoursesList = ( props ) => (
           date={course.date}
           categories={course.categories}
         />
-      ))
+      )).reverse()
     }
   </ul>
 )
