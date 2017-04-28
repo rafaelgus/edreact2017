@@ -54,6 +54,10 @@ class App extends Component {
 
   handleOnClick(e) {
     //alert('click')
+    if( e.target ===  document.getElementById('toggle') ) {
+      e.preventDefault()
+    }
+
     document.getElementById('tuckedMenu').classList.toggle('custom-menu-tucked');
     document.getElementById('toggle').classList.toggle('x');
   }
