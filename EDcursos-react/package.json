@@ -7,6 +7,7 @@
     "jquery": "^3.2.1",
     "pure-css": "^1.0.4",
     "react": "^15.5.4",
+    "react-datepicker": "^0.46.0",
     "react-dom": "^15.5.4",
     "react-router-dom": "^4.1.1",
     "uid": "^0.0.2"

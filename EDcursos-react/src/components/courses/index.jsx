@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import uid from 'uid'
 import $ from 'jquery'
-import { courses } from '../data/courses.json'
+import { categories, courses, teachers } from '../../data/'
 import CourseAddForm from './CourseAddForm'
 import CoursesList from './CoursesList'
 
-class App extends Component {
+class Courses extends Component {
   constructor(...props) {
     super(...props)
 
@@ -24,9 +24,9 @@ class App extends Component {
 
     let form = e.target,
       course = {
-        id: ( form.id.value ) ? form.id.value : App.defaultProps.id,
-        name: ( form.name.value ) ? form.name.value : App.defaultProps.name,
-        teacher: ( form.teacher.value ) ? form.teacher.value : App.defaultProps.teacher
+        id: ( form.id.value ) ? form.id.value : Courses.defaultProps.id,
+        name: ( form.name.value ) ? form.name.value : Courses.defaultProps.name,
+        teacher: ( form.teacher.value ) ? form.teacher.value : Courses.defaultProps.teacher
       }
 
     this.setState({
@@ -74,16 +74,16 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
+Courses.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   teacher: PropTypes.string.isRequired
 }
 
-App.defaultProps = {
+Courses.defaultProps = {
   id: uid(10),
   name: 'Curso Desconocido',
   teacher: 'Profesor No Asignado'
 }
 
-export default App
+export default Courses
