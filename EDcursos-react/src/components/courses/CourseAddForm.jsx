@@ -11,7 +11,7 @@ const optionsTeachers = teachers.map( teacher => Object.assign( {}, { label: tea
 const optionsCategories = categories.map( cat => Object.assign( {}, { label: cat, value: cat } ) )
 
 const CourseAddForm = props => (
-  <form onSubmit={props.onAddCourse}>
+  <form className="pure-form  AddForm" onSubmit={props.onAddCourse}>
     <input type="hidden" name="id" value={uid(10)} />
     <input type="text" placeholder="Nombre del Curso" name="name" />
     <input type="url" placeholder="poster" name="poster" />
@@ -28,7 +28,7 @@ const CourseAddForm = props => (
       options={optionsCategories}
     />
     <Calendar name="date" />
-    <input type="submit" value="Guardar" />
+    <input className="pure-button pure-button-primary" type="submit" value="Guardar" />
   </form>
 )
 
