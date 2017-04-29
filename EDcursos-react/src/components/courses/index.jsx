@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import uid from 'uid'
 import { categories, courses, teachers } from '../../data/'
 import CourseAddForm from './CourseAddForm'
+import CoursesSearch from './CoursesSearch'
 import CoursesList from './CoursesList'
 
 class Courses extends Component {
@@ -9,10 +10,20 @@ class Courses extends Component {
     super(...props)
 
     this.state = {
-      courses: courses
+      courses: courses,
+      teachers: teachers,
+      categories: categories,
+      filter: {
+        name: '',
+        teacher: '',
+        categories: [],
+        search: ''
+      }
     }
 
     this.handleOnAddCourse = this.handleOnAddCourse.bind(this)
+    this.handleOnSearch = this.handleOnSearch.bind(this)
+    this.handleOnFilter = this.handleOnFilter.bind(this)
   }
 
   handleOnAddCourse(e) {
@@ -38,6 +49,21 @@ class Courses extends Component {
     form.reset()
   }
 
+  handleOnSearch(e) {
+    let newFilter = Object.assign( {}, this.state.filter, { [e.target.name]: [e.target.value] } )
+
+    this.setState({
+      filter: newFilter
+    })
+
+    //console.log(newFilter)
+  }
+
+  handleOnFilter(filter, data) {
+    let regex = new RegExp(filter.search, 'i')
+    return data.filter(q => ( regex.test(q.name) || regex.test(q.teacher) || regex.test(q.categories) ))
+  }
+
   render() {
     if ( !this.state.courses.length ) {
       return (
@@ -49,7 +75,8 @@ class Courses extends Component {
       return(
         <article className="Main-container">
           <CourseAddForm onAddCourse={this.handleOnAddCourse} />
-          <CoursesList courses={this.state.courses} />
+          <CoursesSearch onSearch={this.handleOnSearch} />
+          <CoursesList courses={this.handleOnFilter(this.state.filter, this.state.courses)} />
         </article>
       )
     }
