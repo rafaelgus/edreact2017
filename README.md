@@ -4,6 +4,6 @@
 
 ### [Ver Presentación](http://jonmircha.github.io/edreact2017)
 
-### [Ver Proyecto Final](jonmircha.github.io/edteam-cursos-react)
+### [Ver Proyecto Final](http://jonmircha.github.io/edteam-cursos-react)
 
 ![React desde cero](https://ed.team/sites/default/files/styles/large/public/courses/images/react-poster_0.jpg?itok=iDcHgiYQ)
