@@ -1,1 +1,1332 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/edteam-cursos-react/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><title>EDteam Cursos React</title><link href="/edteam-cursos-react/static/css/main.cd93dbb5.css" rel="stylesheet"></head><body><div id="root"></div><script type="text/javascript" src="/edteam-cursos-react/static/js/main.5d8d2a2b.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+	<meta charset="utf-8">
+	<title>Curso de React de EDteam por @jonmircha</title>
+	<meta name="description" content="Esta presentación contiene toda la teoría y es una referencia temática del Curso de React de EDteam impartido por Jonathan MirCha">
+	<meta name="author" content="Jonathan MirCha">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<link rel="shortcut icon" type="image/png" href="./img/react-logo.png">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/black.css" id="theme">
+	<!-- Code syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+	<link rel="stylesheet" href="css/custom.css">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="corner c-tl"><img src="img/edteam-logo.png" alt="EDteam" style="max-width: 70%;" /></div>
+	<div class="corner c-tr"><img src="img/react-logo.svg" alt="React" style="max-width: 25%;" /></div>
+	<div class="corner c-bl"><p><img src="http://bextlan.com/img/jonmircha.jpg" style="max-width: 50px; border-radius:100%;"> <span>Jonathan MirCha - @jonmircha</span></p></div>
+	<div class="corner c-br"><p>Curso React de EDteam</p></div>
+	<div class="reveal">
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+			<section>
+				<h2>Curso de React</h2>
+				<div><img src="img/react-logo.svg" alt="React" style="border:0; box-shadow:none; max-width:35%;"></div>
+				<p>de <b><a href="http://ed.team/" target="_blank">EDteam</a></b></p>
+				<p>por <a href="http://twitter.com/jonmircha" target="_blank">@jonmircha</a></p>
+				<p>
+					<a href="http://jonmircha.github.io/edreact2017" target="_blank">TEORÍA</a>
+					y
+					<a href="https://github.com/jonmircha/edreact2017" target="_blank">CÓDIGOS</a>
+				</p>
+			</section>
+			<section>
+				<figure>
+					<figcaption>
+						<a href="http://jonmircha.com" target="_blank">Jonathan MirCha</a><br>
+						<b>Instructor Web & Front end Devsignloper.</b><br>
+						Entusiasta de la educación digital.
+						Dirijo <a href="http://bextlan.com" target="_blank">Bextlán</a>.<br>
+						Maratonista(x10) Fitness. <a href="http://www.celiacos.org/enfermedad-celiaca.html" target="_blank">Celiaco</a> por amor.
+					</figcaption>
+					<img src="http://bextlan.com/img/jonmircha.jpg" style="height: auto; max-width: 400px;"></a>
+				</figure>
+			</section>
+			<section>
+				<h2>Temas:</h2>
+				<ol style="font-size: 90%;">
+					<li><a href="#/">Inicio</a></li>
+					<li><a href="#/3">Aplicaciones Web Modernas</a></li>
+					<li><a href="#/21">Introducción a React</a></li>
+					<li><a href="#/44">Herramientas de Desarrollo</a></li>
+					<li><a href="#/45">Configuración de Entorno</a></li>
+					<li><a href="#/61">Componentes (I)</a></li>
+					<li><a href="#/99">Componentes (II)</a></li>
+					<li><a href="#/120">Manejo de Rutas</a></li>
+					<li><a href="#/123">Integración con Firebase</a></li>
+					<li><a href="#/127">Mi primer webapp con React</a></li>
+				</ol>
+			</section>
+			<section>
+				<p style="font-size: 150%;">
+					Las aplicaciones Web se parecen cada vez más a las aplicaciones de escritorio.
+				</p>
+			</section>
+			<section>
+				<p>
+					Actualmente tenemos dos formas de enfrentarnos a un proyecto web: 
+				</p>
+				<ol style="font-size: 80%;">
+					<li>
+						La forma tradicional utilizando renderizaciones desde el servidor utilizando frameworks como Symphony (PHP), Rails (Ruby) o Django (Python) y jugueteando con JavaScript (jQuery) en el cliente.
+					</li>
+					<br>
+					<li>
+						La otra son las SPA's <mark>(Single Page Applications)</mark> donde se utiliza al servidor para renderizar objetos JSON los cuales serán tratados por un framework o librería JavaScript en el cliente.
+					</li>
+				</ol>
+			</section>
+			<section>
+				<img src="./img/spa-life-cycle.png">
+			</section>
+			<section>
+				<p>
+					En ambos casos: 
+				</p>
+				<br>
+				<ul>
+					<li>Utilizamos elementos HTML como UI</li>
+					<li>Utilizamos el DOM de JS para manipular la UI</li>
+					<li>La UI reacciona a eventos</li>
+					<li>Gestionamos diferentes cosas <small>(pantallas y/o páginas, datos, estados, etc.)</small></li>
+				</ul>
+			</section>
+			<section>
+				<p  style="font-size: 150%;">Pero hay un problema...</p>
+				<img src="./img/theres-a-problem.jpg"  style="max-width: 80%;">
+			</section>
+			<section>
+				<p  style="font-size: 120%;">
+					<mark>HTML</mark> es un lenguaje para crear <mark>documentos</mark>,<br><b>NO</b> aplicaciones
+				</p>
+				<br>
+				<p  style="font-size: 120%;">
+					El DOM y las API's JS tienen<br><mark>diferencias</mark> entre los <mark>navegadores</mark>
+				</p>
+			</section>
+			<section>
+				<p  style="font-size: 150%;">Soluciones:<br>¡<mark>Estándares</mark> y <mark>No Estándares</mark>!</p>
+			</section>
+			<section>
+				<p  style="font-size: 120%;">Soluciones Estándares</p>
+				<p  style="font-size: 120%;"><a href="https://www.webcomponents.org/" target="_blank">Web Components</a></p>
+				<img src="./img/web-components.svg" style="max-width: 50%; background: none; border:none; box-shadow: none;">
+				<blockquote>
+					<p style="font-size: 45%;">
+						Web Components constiste en distintas tecnologías independientes. Puedes pensar en Web Components como en widgets de interfaz de usuario reusables que son creados usando tecnología Web abierta. Son parte del navegador, y por lo tanto no necesitan bibliotecas externas como jQuery o Dojo. Un Web Component puede ser usado sin escribir código, simplemente añadiendo una sentencia para importarlo en una página HTML. Web Components usa capacidades estándar, nuevas o aún en desarrollo, del navegador. <a href="https://developer.mozilla.org/es/docs/Web/Web_Components"><cite>MDN</cite></a>
+					</p>
+				</blockquote>
+				<p>
+					osea... <a href="http://caniuse.com/#search=web%20components" target="_blank">no están listos</a>
+				</p>
+			</section>
+			<section>
+				<p  style="font-size: 120%;">Soluciones No Estándares:<br>¡Frameworks y Librerías!</p>
+				<img src="./img/front-end-developer-tools2.jpg" style="max-width: 50%;">
+			</section>
+			<section>
+				<p>
+					La mayoría de los frameworks y librerías han sido creadas por alguna necesidad en particular, y con el tiempo, si tienen aceptación suelen crecer en potencia, robustez y complejidad.
+				</p>
+				<br>
+				<p>
+					Pero NO existe el framework o librería perfect@ que pueda solucionarlo todo...
+				</p>
+			</section>
+			<section>
+				<p>
+					...solo existe el programador pragmático que sabe elegir sus herramientas.
+				</p>
+				<img src="./img/matrix-neo.jpg">
+			</section>
+			<section>
+				<p  style="font-size: 120%;">Evolución de los Frameworks y Librerías JS</p>
+				<img src="./img/evolution-frameworks-js.png">
+			</section>
+			<section>
+				<p>Hoy l@s Frameworks y Librerías JS modernas nos ofrecen:</p>
+				<ul>
+					<li>Mismas soluciones</li>
+					<li>Mismas ventajas</li>
+					<li>Mismos inconvenientes</li>
+					<li>Model View Controller (o variación)</li>
+					<li>Eventos (cambios)</li>
+					<li>Programación <mark>Reactiva</mark> (Data binding)</li>
+				</ul>
+			</section>
+			<section>
+				<p  style="font-size: 120%;">Los favoritos de hoy</p>
+				<img src="./img/frameworks-js-populares.jpg" style="max-width: 80%;">
+			</section>
+			<section>
+				<ul>
+					<li>
+						<a href="https://angular.io/" target="_blank">Angular</a>
+						<blockquote style="font-size: 60%;">
+							<p>
+								<b>One <mark>framework</mark>. Mobile & desktop.</b> Angular is a development platform for building mobile and desktop web applications.
+							</p>
+						</blockquote>
+					</li>
+					<li>
+						<a href="https://facebook.github.io/react/" target="_blank">React</a>
+						<blockquote style="font-size: 60%;">
+							<p>
+								A JavaScript <mark>library</mark> for building user interfaces.
+							</p>
+						</blockquote>
+					</li>
+					<li>
+						<a href="https://vuejs.org/" target="_blank">Vue.js</a>
+						<blockquote style="font-size: 60%;">
+							<p>
+								<b>The Progressive JavaScript <mark>Framework</mark>.</b> Intuitive, Fast and Composable MVVM for building interactive interfaces.
+							</p>
+						</blockquote>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<p  style="font-size: 120%;">¿Qué pildora tomarás?</p>
+				<iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/RhlXqYiTz2Q" frameborder="0" allowfullscreen></iframe>
+			</section>
+			<section>
+				<img src="./img/red-blue-pills.jpg">
+			</section>
+			<section>
+				<p  style="font-size: 120%;">Nosotros tomaremos la <mark>Roja</mark> de React</p>
+				<img src="./img/react-logo.svg" style="background: none; border:none; box-shadow: none; max-width: 45%;">
+				<p><a href="#/2">&lt;&lt; regresar al temario</a></p>
+			</section>
+			<section>
+				<p style="font-size: 120%;">
+					<b>React</b>, también conocido como <b>React.js o ReactJS</b>, es una <b><i>librería</i></b> JavaScript opensource diseñada para crear <br><mark>interfaces de usuario</mark>
+				</p>
+				<br style="font-size: 120%;">
+				<p style="font-size: 120%;">
+					No es un framework, es una <mark>librería UI</mark>
+				</p>
+			</section>
+			<section>
+				<p>
+					El origen de React comienza en 2011 cuando Pete Hunt y un pequeño equipo en Facebook comienzan a crear un port de <b>XHP</b> (versión de PHP creada por Facebook). 
+				</p>
+				<br>
+				<p>
+					<b>XHP</b> fue diseñada para minimizar los ataques <b>XSS</b> (Cross Site Scripting), permitiendo una sintaxis XML con el propósito de crear elementos HTML customizables y reusables. 
+				</p>
+			</section>
+			<section>
+				<p>
+					Sin embargo existía un problema las <b>SPA's</b> requieren mayor numero de peticiones al servidor y <b>XHP</b> no conseguía resolver esto.
+				</p>
+				<br>
+				<p>
+					Con esta problemática, un pequeño grupo de ingenieros de Facebook intentó utilizar <b>XHP</b> en el navegador usando <b>JavaScript</b> y el resultado fue <b>React</b>, liberándose como opensource en 2013.
+				</p>
+			</section>
+			<section>
+				<p>
+					Facilita el desarrollo de <mark>Single Page Applications</mark> (SPA's), obteniendo un gran rendimiento y ofreciendo una forma de desarrollo más cercana a la creación de <mark>videojuegos</mark> que a la de aplicaciones.
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;">
+					SÍ... leíste bién...<br>
+				</p>
+				<img src="./img/video-games.jpg">
+				<p style="font-size: 150%;">
+					<mark>videojuegos</mark>
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;">
+					¿Cómo funcionan las SPA's?
+				</p>
+			</section>
+			<section>
+				<p>
+					Cuando los datos en una aplicación son actualizados, la interfaz de usuario se actualiza de manera automática reflejando esos cambios
+				</p>
+				<br>
+				<p>
+					El framework/librería JS lo gestiona por ti. 
+				</p>
+			</section>
+			<section>
+				<p>
+					En un un enfoque de <mark>data-binding</mark> tienes una especie de widgets que el usuario manipulará y se quedarán todo el tiempo en la pantalla.
+				</p>
+			</section>
+			<section>
+				<p>
+					La diferencia con <b>React</b> es que se asemeja al <mark>engine</mark> de un <mark>videojuego</mark>.
+				</p>
+				<br>
+				<p>
+					Con cada cambio de estado se borra todo lo que sucede en la pantalla y se vuelve a dibujar toda la escena.
+				</p>
+			</section>
+			<section>
+				<p>
+					Con este enfoque podemos decir que <b>React</b> es un <mark>renderizador inmediato</mark>, mientras que los sistemas basados en data-binding se consideran<br><mark>renderizadores persistentes</mark>.
+				</p>
+			</section>
+			<section>
+				<p>
+					<b>React</b> permite crear aplicaciones web complejas que utilizan un gran intercambio de datos.
+				</p>
+				<br>
+				<p>
+					Su principio es sencillo: <mark>declarative and composable</mark>.
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 95%;">
+					Mientras que el resto de framework o librerías continúan introduciendo JavaScript en el HTML y usando flujo de datos bidireccional...
+				</p>
+				<br style="font-size: 90%;">
+				<p style="font-size: 95%;">
+					...React hace todo lo contrario, incluye HTML en su JavaScript (JSX) y...
+				</p>
+				<br style="font-size: 90%;">
+				<p style="font-size: 95%;">
+					...promueve el flujo en un solo sentido, haciendo más fácil la planeación de aplicaciones y detección de errores.
+				</p>
+			</section>
+			<section>
+				<p>
+					Si piensas en el paradigma del Modelo-Vista-Controlador (MVC), <b>React</b> es únicamente la <b>V</b>, sólo se preocupará de la <mark>interfaz de usuario</mark>. Esto hace que se pueda utilizar en combinación de otras librerías o frameworks JS.
+				</p>
+			</section>
+			<section>				
+				<p>
+					Además gracias a su enorme y creciente comunidad, <b>React</b>, esta generando una gran biblioteca de extensiones, las cuales no sólo se ocupan de la interfaz de usuario sino que te ayudarán a complementar los requerimientos de tus aplicaciones.
+				</p>
+			</section>
+			<section>
+				<img src="./img/legos.png" style="background: none; border:none; box-shadow: none;">
+			</section>
+			<section>
+				<p>
+					Actualmente <b>React</b> está siendo utilizado por organizaciones como Khan Academy, Netflix, Yahoo, Airbnb, Uber, Facebook, Instagram, WhatsApp, Sony, Attlasian entre otras.
+				</p>
+				<br>
+				<p>
+					Esto demuestra el <a href="http://stackoverflow.com/insights/survey/2016#technology-trending-tech-on-stack-overflow" target="_blank">gran estado</a> en el que se encuentra <b>React</b>, con una gran aceptación por muchas empresas líderes en su sector y asegurando por tanto un desarrollo continuo.
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;">
+					¿Cómo funciona <b>React</b>?
+				</p>
+				<br>
+				<ol style="font-size: 120%;">
+					<li>Renderiza todo con cada cambio</li>
+					<li>Virtual DOM</li>
+					<li>Eventos sintéticos</li>
+				</ol>
+			</section>
+			<section>
+				<p style="font-size: 120%;">
+					<b>Renderiza todo con cada cambio</b>
+				</p>
+				<p>
+					No necesita de Observers o Bindings. <b>React</b> es funcional y todo componente debe ser autogestionable: debe saber cuando volver a renderizarse ya sea por cambios de <mark>estado</mark> o por paso de <mark>propiedades</mark> heredadas.
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 120%;">
+					<b>Virtual DOM</b>
+				</p>
+				<p>
+					Modificar el DOM es una operación costosa que <b>React</b> hace por nosotros, de una manera sencilla, trata al DOM como si de una <a href="https://es.wikipedia.org/wiki/Unidad_de_procesamiento_gr%C3%A1fico" target="_blank">GPU</a> se tratará.
+
+				<br>
+				<img src="./img/gpu.png" style="background: none; border:none; box-shadow: none; max-width: 45%;">
+			</section>
+			<section>
+				<p style="font-size: 120%;">
+					<b>Como funciona el Virtual DOM</b>
+				</p>
+				<ul style="font-size: 80%;">
+					<li>Los componentes de <b>React</b> no generan HTML, sino código que será una descripción virtual del DOM</li>
+					<li>Se estructura en forma de árbol con un único nodo raíz</li>
+					<li>Cuando <b>React</b> ejecuta <mark>render</mark>, se guarda una descripción en memoria</li>
+					<li>En el próximo render, compara la nueva descripción con la anterior y</li>
+					<li>Decide qué debe cambiar en el DOM real</li>
+					<li>Garantiza que se realizarán las mínimas operaciones necesarias en el DOM, de la forma más eficiente</li>
+					<li>Para el programador funciona como un render completo, cada vez</li>
+				</ul>
+			</section>
+			<section>
+				<p style="font-size: 120%;"><b>Virtual DOM</b></p>
+				<img src="./img/reactjs-virtual-dom-real-dom.png">
+			</section>
+			<section>
+				<p style="font-size: 120%;">
+					<b>Eventos sintéticos</b>
+				</p>
+				<p>
+					<b>React</b> implementa su propio sistema de eventos, por lo que no tendrás que preocuparte por tener librerías para el manejo del DOM como jQuery.					
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 120%;">
+					<b>Eventos sintéticos</b>
+				</p>
+				<p>
+					<b>React</b> crea un único manejador de evento nativo en el nivel superior de la estructura de cada componente. Este sistema de eventos está normalizado para que sea funcional en todos los navegadores e incluso es capaz de diferenciar entre eventos desktop y móviles.
+				</p>
+				<p><a href="#/2">&lt;&lt; regresar al temario</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Herramientas de Desarrollo</b></p>
+				<ul>
+					<li>Editor de código (<small>te recomiendo <a href="https://code.visualstudio.com/" target="_blank">Visual Code</a></small>)</li>
+					<li>Interfaz de línea de comando</li>
+					<li>React Dev Tools (<small><a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi" target="_blank">Chrome</a> o <a href="https://addons.mozilla.org/es/firefox/addon/react-devtools/" target="_blank">Firefox</a></small>)</li>
+					<li><a href="https://nodejs.org/" target="_blank">Node.js</a> & (<small><a href="https://www.npmjs.com/" target="_blank">NPM</a> o <a href="https://yarnpkg.com/" target="_blank">Yarn</a></small>)</li>
+					<li><a href="https://github.com/jonmircha/edreact2017/blob/master/teoria-es6.md" target="_blank">ES6</a> & <a href="http://babeljs.io/" target="_blank">Babel</a></li>
+					<li><a href="https://facebook.github.io/react/docs/introducing-jsx.html" target="_blank">JSX</a> (<small>Sintaxis React</small>)</li>
+					<li><a href="https://webpack.js.org/" target="_blank">Webpack</a> o <a href="https://github.com/facebookincubator/create-react-app/" target="_blank">Create React App</a></li>
+				</ul>
+				<p><a href="#/2">&lt;&lt; regresar al temario</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Configuración de Entorno</b></p>
+				<img src="./img/react-entorno.png">
+			</section>
+			<section>
+				<p style="font-size: 120%;">Existen 3 formas de usar React</p>
+				<div class="flex">
+					<div class="c2">
+						<img src="./img/clint-eastwood-bueno-feo-malo.jpg">
+					</div>
+					<div class="c2">
+						<ul style="font-size: 110%;">
+							<li><a href="#/57">La Buena</a></li><br><br>
+							<li><a href="#/49">La Fea</a></li><br><br>
+							<li><a href="#/47">La Mala</a></li>
+						</ul>
+					</div>
+				</div>
+				<p><a href="#/2">&lt;&lt; regresar al temario</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>La Mala: en el documento HTML</b></p>
+				<p>Necesitamos incluir</p>
+				<ul style="font-size: 90%;">
+					<li><mark>react.js:</mark> La librería principal.</li>
+					<br>
+					<li><mark>react-dom.js:</mark> Desde React 0.14 el manejador del DOM de los componentes se realiza con esta libreria.</li>
+					<br>
+					<li><mark>babel-standalone</mark> Una version mínima de BabelJS para el navegador.</li>
+					<br>
+					<li>Especificar que tu script es de tipo <mark>text/babel</mark>.</li>
+				</ul>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>La Mala: en el documento HTML</b></p>
+				<p>También podrías usar plataformas online como:</p>
+				<ul>
+					<li><a href="http://codepen.io/" target="_blank">CodePen</a></li>
+					<li><a href="https://jsfiddle.net/" target="_blank">JSFiddle</a></li>
+					<li><a href="https://jsbin.com/" target="_blank">JS Bin</a></li>
+				</ul>
+				<p style="font-size: 80%;"><a href="#/46">&lt;&lt; regresar a formas de usar React</a></p>
+			</section>
+						<section>
+				<p style="font-size: 150%;"><b>La Fea: con Webpack</b></p>
+				<p><small>(a pelo)</small></p>
+				<img src="img/webpack.svg" style="background-color: transparent; border:0; box-shadow:none; max-width:35%;">
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>La Fea: con Webpack</b></p>
+				<ul>
+					<li>Para hacer un desarrollo modular, utilizaremos webpack</li><br>
+					<li>Nos permite separar nuestro código en archivos y carpetas, utilizar npm o yarn como gestor de dependencias</li><br>
+					<li>Y generar un <mark>bundle</mark>: único archivo JS con toda nuestra aplicación</li>
+				</ul>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>¿Qué es Webpack?</b></p>
+				<p>
+					Es un empaquetador de archivos para aplicaciones JavaScript modernas, totalmente configurable y 
+				</p>
+				<br>
+				<p>
+					A diferencia de los Task Runners (<small>como Grunt y Gulp</small>) donde los procesos se gestionan de forma separada, en webpack, si se conoce el origen, todo se compila en un único archivo
+				</p>
+			</section>
+			<section>
+				<img src="./img/webpack-workflow1.png" style="background-color: #FFF; max-width: 80%;">
+			</section>
+			<section>
+				<img src="./img/webpack-workflow2.png" style="background-color: #FFF; max-width: 80%;">
+			</section>
+			<section>
+				<p style="font-size: 150%;">Webpack</p>
+				<p>
+					Crea una gráfica de todas las dependencias de la aplicación. Tiene un archivo de configuración, denominado <b>webpack.config.js</b>, donde se define todo el proceso de <b>build</b> en un objeto JS que tiene 4 conceptos clave:
+				</p>
+				<ul>
+					<li>Entry (<small>indica cuál es el punto(s) de entrada</small>)</li>
+					<li>Output (<small>indica cuál es el punto(s) de salida</small>)</li>
+					<li>Loaders (<small>realizan transformaciones en los archivos</small>)</li>
+					<li>Plugins (<small>realizan acciones en los archivos</small>)</li>
+				</ul>
+			</section>
+			<section>
+				<p style="font-size: 150%;">Aprende más sobre Webpack</p>
+				<ul>
+					<li><a href="https://webpack.js.org/" target="_blank">Sitio Web de la versión 2</a></li>
+					<li><a href="https://webpack.js.org/guides/migrating/" target="_blank">Cómo migrar de la v1 a la v2</a></li>
+					<li><a href="https://webpack.js.org/concepts/" target="_blank">Conceptos Básicos</a></li>
+					<li><a href="https://webpack.js.org/configuration/" target="_blank">Configuración Básica</a></li>
+					<li><a href="https://webpack.js.org/loaders/" target="_blank">Loaders</a></li>
+					<li><a href="https://webpack.js.org/plugins/" target="_blank">Plugins</a></li>
+					<li><a href="https://webpack.js.org/configuration/dev-server/" target="_blank">Servidor Web</a></li>
+				</ul>
+			</section>
+			<section>
+				<h1>Let's to Conf! \<div class="carita">XD</div>/</h1>
+				<pre>
+					<code class="terminal">
+npm i -g webpack webpack-dev-server babel-cli
+npm i -D webpack webpack-dev-server 
+	 babel-loader babel-core babel-preset-latest 
+	 babel-preset-react json-loader react-hot-loader
+	 css-loader style-loader
+npm i -S react react-dom
+					</code>
+				</pre>
+				<p style="font-size: 80%;"><a href="#/46">&lt;&lt; regresar a formas de usar React</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;">
+					<b>La Buena: con el generador oficial</b>
+					<p><small>(sin complicaciones, céntrate en programar, <b>NO</b> en configurar)</small></p>
+					<br>
+					<a href="https://github.com/facebookincubator/create-react-app/#create-react-app-" target="_blank">create-react-app</a>
+				</p>
+				<pre>
+					<code class="terminal">
+npm install -g create-react-app
+
+create-react-app my-app
+cd my-app/
+npm start
+					</code>
+				</pre>
+			</section>
+			<section>
+				<p>
+					<b>create-react-app</b> sólo te pedirá que existan 2 archivos:
+				</p>
+				<br>
+				<br>
+				<ol style="font-size: 90%;">
+					<li><mark>public/index.html</mark> el documento HTML donde cargará la app React</li>
+					<br>
+					<li><mark>src/index.js</mark> el punto de entrada de la app React</li>
+				</ol>
+			</section>
+			<section>
+				<p style="font-size: 150%;">
+					<b>También podrías usar <a href="https://yarnpkg.com/" target="_blank">Yarn</a></b>
+					<p><small>(más rápido que NPM)</small></p>
+				</p>
+				<img src="./img/yarn-logo.png" style="max-width: 15%; box-shadow: none; background-color: transparent; border: 0;">
+				<pre>
+					<code class="terminal">
+yarn global add package //instalación global
+yarn add package //instalación dependencia de proyecto
+yarn add package [--dev/-D] //instalación dependencia de desarrollo
+yarn script //correr un script npm
+					</code>
+				</pre>
+			</section>
+			<section>
+				<h1>Let's to Code! \<div class="carita">XD</div>/</h1>
+				<img src="./img/cat-keyboard.gif" style="max-width: 35%;">
+				<p style="font-size: 80%;"><a href="#/46">&lt;&lt; regresar a formas de usar React</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Componentes (I)</b></p>
+				<img src="./img/primer-componente-react.jpg" style="max-width: 80%;">
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Componentes</b></p>
+				<p style="font-size: 90%;">
+					Para comenzar a programar con React es necesario entender <mark>desde cero</mark> los siguientes conceptos:
+				</p>
+				<ul  style="font-size: 90%;">
+					<li><a href="#/63">¿Qué es un Componente?</a></li>
+					<li><a href="#/65">Escritura de Componentes</a></li>
+					<li><a href="#/72">Partes de un Componente</a></li>
+					<li><a href="#/87">Tipos de Componentes</a></li>
+					<li><a href="#/93">Sintaxis de Componentes</a></li>
+					<li><a href="#/98">Interacción entre Componentes</a></li>
+				</ul>
+				<p><a href="#/2">&lt;&lt; regresar al temario</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>¿Qué es un Componente?</b></p>
+				<br>
+				<p>
+					Un componente es una pieza de código que se dedica a hacer o resolver una tarea o problema en partícular y debe de hacerlo muy bien. Además forma parte de un todo más grande o complejo.
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>¿Qué es un Componente?</b></p>
+				<p style="font-size: 90%;">
+					React encapsula absolutamente todo, no encontrarás una división en varios fichero entre la vista y la lógica de la misma.
+				</p>
+				<p style="font-size: 90%;">
+					Los componentes React normalmente serán lo suficientemente pequeños para que no tengas la necesidad de dividir nada, y en el caso de que sea así posiblemente sea mejor dividir tu componente en componentes más pequeños y reutilizables.
+				</p>
+				<p style="font-size: 80%;"><a href="#/62">&lt;&lt; regresar a Componentes (I)</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Escritura de Componentes</b></p>
+				<br>
+				<p>Podemos escribir componentes React con:</p>
+				<br>
+				<ul style="font-size: 120%;">
+					<li>JavaScript</li>
+					<li>JSX</li>
+				</ul>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Escritura de Componentes</b></p>
+				<p style="font-size: 120%;"><b>con JavaScript</b></p>
+				<pre>
+					<code style="font-size: 75%;" class="javascript">
+var image = React.createElement(
+		'img', { src: './img/logo-react.svg', className: 'Logo-image' }, null
+	), title = React.createElement(
+		'figcaption', { className: 'Logo-title' }, 'React'
+	), logo = React.createElement(
+		'figure', { className: 'Logo'}, [image, title]
+	);
+
+ReactDOM.render( logo, document.getElementById('app') );
+					</code>
+				</pre>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Escritura de Componentes</b></p>
+				<p style="font-size: 120%;"><b>con JavaScript</b></p>
+				<p style="font-size: 100%;"><b>se traduce a HTML</b></p>
+				<pre>
+					<code style="font-size: 75%;" class="html">
+<figure class="Logo">
+	<img src="./img/logo-react.svg" class="Logo-image">
+	<figcaption class="Logo-title">React</figcaption>
+</figure>
+					</code>
+				</pre>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Escritura de Componentes</b></p>
+				<p style="font-size: 120%;"><b>con JSX</b></p>
+				<pre>
+					<code style="font-size: 75%;" class="jsx">
+class Logo extends React.Component {
+	render() {
+		return(
+			&lt;figure className="Logo"&gt;
+				&lt;img src="./img/logo-react.svg" className="Logo-image"&gt;
+				&lt;figcaption className="Logo-title"&gt;React&lt;/figcaption&gt;
+			&lt;/figure&gt;
+		)
+	}
+}
+
+ReactDOM.render( &lt;Logo /&gt;, document.getElementById('app') );
+					</code>
+				</pre>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b><a href="https://facebook.github.io/react/docs/introducing-jsx.html" target="_blank">¿Qué es JSX?</a></b></p>
+				<br>
+				<p>
+					JSX no es HTML, tampoco es un String
+				</p>
+				<br>
+				<p>
+					es una extensión de JavaScript creada por Facebook para la creación de componentes en React. Sirve de preprocesador de los elementos del componente y transforma el código a JavaScript.
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Características JSX</b></p>
+				<br>
+				<ul>
+					<li>Los nombres de componentes deben definirse con UpperCamelCase</li>
+					<li>Los elementos JSX se cierran como XML con &lt;/ &gt;</li>
+					<li>Se puede agregar código JS encerrándolo en { }</li>
+				</ul>
+			</section>
+			<section>
+				<p style="font-size: 120%;"><b>Atributos HTML soportados en JSX</b></p>
+				<p style="font-size: 80%;">
+					Soporta todos los atributos <code>data-*</code> y <code>aria-*</code> así como:
+				</p>
+				<pre>
+					<code style="font-size: 70%;" class="html">
+	accept acceptCharset accessKey action allowFullScreen allowTransparency alt
+	async autoComplete autoFocus autoPlay cellPadding cellSpacing charSet checked
+	classID className colSpan cols content contentEditable contextMenu controls
+	coords crossOrigin data dateTime defer dir disabled download draggable encType
+	form formAction formEncType formMethod formNoValidate formTarget frameBorder
+	headers height hidden high href hrefLang htmlFor httpEquiv icon id label lang
+	list loop low manifest marginHeight marginWidth max maxLength media mediaGroup
+	method min multiple muted name noValidate open optimum pattern placeholder
+	poster preload radioGroup readOnly rel required role rowSpan rows sandbox scope
+	scoped scrolling seamless selected shape size sizes span spellCheck src srcDoc
+	srcSet start step style tabIndex target title type useMap value width wmode
+					</code>
+				</pre>
+				<p style="font-size: 80%;"><a href="#/62">&lt;&lt; regresar a Componentes (I)</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Partes de un Componente</b></p>
+				<ul>
+					<li><a href="#/73">Renderización</a> aka <mark>render()</mark></li><br>
+					<li><a href="#/74">Propiedades</a> aka <mark>props</mark></li><br>
+					<li><a href="#/81">Estado</a> aka <mark>state</mark></li><br>
+					<li><a href="#/83">Eventos</a> aka <mark>Synthetic Events</mark></li>
+				</ul>
+				<p style="font-size: 80%;"><a href="#/62">&lt;&lt; regresar a Componentes (I)</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Partes de un Componente</b></p>
+				<p style="font-size: 120%;"><b><code>render()</code></b></p>
+				<p style="font-size: 80%;">
+					Es el método que se encarga de visualizar el código HTML de los componentes React en el navegador.
+				</p>
+				<br>
+				<p  style="font-size: 80%;">
+					Se llama automáticamente cuando se crea el componente o cuando su estado cambia.
+				</p>
+				<p style="font-size: 80%;"><a href="#/72">&lt;&lt; regresar a Partes de un Componentes</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Partes de un Componente</b></p>
+				<p style="font-size: 120%;"><b>Props</b></p>
+				<p>
+					Las propiedades son el mecanismo principal de React para pasar datos de un componente superior (padre) a uno inferior (hijo).
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Partes de un Componente</b></p>
+				<p style="font-size: 120%;"><b>Props</b></p>
+				<p style="font-size: 80%;">
+					Son información externa utilizada para definir aspectos del componente.
+				</p>
+				<br>
+				<p><mark>Son INMUTABLES</mark></p>
+				<br>
+				<p style="font-size: 80%;">
+					Un componente <b>NO</b> puede cambiar sus propiedades, estas quedan fijas durante todo el ciclo de vida del mismo.
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Partes de un Componente</b></p>
+				<p style="font-size: 120%;"><b>PropTypes</b></p>
+				<p style="font-size: 80%;">
+					Los componentes en React están diseñados para poder agruparlos en componentes más grandes y ser reutilizados.
+				</p>
+				<br>
+				<p style="font-size: 80%;">
+					Por tal es una buena práctica <mark>definir explícitamente</mark> las propiedades que acepta un componente, cuáles son requeridas y los tipos de dato de cada una.
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Partes de un Componente</b></p>
+				<p style="font-size: 120%;"><b>DefaultProps</b></p>
+				<p>
+					Cuando queremos asignar el valor a una propiedad y este no se proporciona, podemos usar el objeto <mark>defaultProps</mark>.
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Partes de un Componente</b></p>
+				<p style="font-size: 120%;"><b><a href="https://facebook.github.io/react/docs/typechecking-with-proptypes.html" target="_blank">Validadores de PropTypes</a></b></p>
+				<p><b>Primitivos</b></p>
+				<ul  style="font-size: 90%;">
+					<li><code>PropTypes.array</code> <small>(arreglo)</small></li>
+					<li><code>PropTypes.bool</code> <small>(boolean)</small></li>
+					<li><code>PropTypes.func</code> <small>(función)</small></li>
+					<li><code>PropTypes.number</code> <small>(número)</small></li>
+					<li><code>PropTypes.object</code> <small>(objeto)</small></li>
+					<li><code>PropTypes.string</code> <small>(cadena)</small></li>
+				</ul>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Partes de un Componente</b></p>
+				<p style="font-size: 120%;"><b>Validadores de PropTypes</b></p>
+				<p><b>Combinados</b></p>
+				<ul  style="font-size: 90%;">
+					<li><code>PropTypes.oneOfType</code> <small>(puede tener varios tipos)</small></li>
+					<li><code>PropTypes.arrayOf</code> <small>(un arreglo de cierto tipo)</small></li>
+					<li><code>PropTypes.objectOf</code> <small>(un objeto con propiedades de cierto tipo)</small></li>
+					<li><code>PropTypes.shape</code> <small>(un objeto con propiedades específicas)</small></li>
+				</ul>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Partes de un Componente</b></p>
+				<p style="font-size: 120%;"><b>Validadores de PropTypes</b></p>
+				<p><b>Especiales</b></p>
+				<ul  style="font-size: 90%;">
+					<li><code>PropTypes.node</code> <small>(cualquier tipo que pueda mostrar su valor [number, string, boolean, elemento de arreglo])</small></li>
+					<li><code>PropTypes.element</code> <small>(un elemento de React)</small></li>
+					<li><code>PropTypes.instanceOf</code> <small>(una instancia de una clase)</small></li>
+					<li><code>PropTypes.oneOf</code> <small>(está limitado a un número específico de valores)</small></li>
+				</ul>
+				<p style="font-size: 80%;"><a href="#/72">&lt;&lt; regresar a Partes de un Componentes</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Partes de un Componente</b></p>
+				<p style="font-size: 120%;"><b>State</b></p>
+				<p style="font-size: 75%;">
+					Además de las props, los componentes pueden tener estado. Representa cómo se encuentra un componente en un momento específico.
+				</p>
+				<p><mark>ES MUTABLE</mark></p>
+				<p style="font-size: 75%;">
+					Cada que el estado cambie, el componente se renderizará automáticamente.
+				</p>
+				<p style="font-size: 75%;">
+					Si queremos cambiar el estado, tenemos a nuestra disposición el método <mark><code>.setState()</code></mark>
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Partes de un Componente</b></p>
+				<p style="font-size: 120%;"><b>State</b></p>
+				<p><mark>NO SE HEREDA</mark></p>
+				<p style="font-size: 75%;">
+					Sólo el componente tiene la capacidad de modificar su estado, ni el Padre ni los Hijos podrán hacerlo.
+				</p>
+				<p style="font-size: 75%;">
+					Es muy util para contener datos en el componente, o para enviar información a los Hijos en forma de propiedad.
+				</p>
+				<p style="font-size: 80%;"><a href="#/72">&lt;&lt; regresar a Partes de un Componentes</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Partes de un Componente</b></p>
+				<p style="font-size: 120%;"><a href="https://facebook.github.io/react/docs/events.html" target="_blank"><b>Eventos Sintéticos</b></a></p>
+				<p style="font-size: 80%;">
+					Sirven para modificar el estado del componente
+				</p>
+				<br>
+				<p style="font-size: 80%;">
+					Mientras que las propiedades se pasan de padres a hijos, los eventos se disparan de hijos a padres.
+				</p>
+				<br>
+				<p style="font-size: 80%;">
+					Un evento que dispare un hijo, puede capturarlo el padre.
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Partes de un Componente</b></p>
+				<p style="font-size: 120%;"><b>Eventos Sintéticos</b></p>
+				<p style="font-size: 75%;">
+					Todos los eventos en React son instancias de <mark><code>SyntheticEvent</code></mark> un wrapper cross-browser del evento nativo del navegador.
+				</p>
+				<br>
+				<p style="font-size: 75%;">
+					Contienen la misma interfaz que los eventos nativos, con la ventaja de funcionar idénticamente en todos los navegadores.
+				</p>
+				<br>
+				<p style="font-size: 75%;">
+					En caso de querer acceder a los eventos nativos, simplemente hay que utilizar el atributo <mark><code>nativeEvent</code></mark>.
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Partes de un Componente</b></p>
+				<p style="font-size: 120%;"><b>Eventos Sintéticos</b></p>
+				<p><b><a href="https://facebook.github.io/react/docs/react-without-es6.html#autobinding" target="_blank">Autobinding</a></b></p>
+				<p style="font-size: 75%;">
+					Los componentes declarados como clases ES6, los métodos siguen la misma semántica que las clases. No enlazan automáticamente <code>this</code> a la instancia.
+				</p>
+				<br>
+				<p style="font-size: 75%;">
+					Tendremos que utilizar explícitamente <mark><code>.bind(this)</code></mark> en el constructor.
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Partes de un Componente</b></p>
+				<p style="font-size: 120%;"><b>Eventos Sintéticos</b></p>
+				<p><b><a href="https://facebook.github.io/react/docs/handling-events.html" target="_blank">Delegación de Eventos</a></b></p>
+				<p style="font-size: 75%;">
+					Los eventos en JSX se nombran con <b>camelCase</b>, en vez de lowercase y se pasan como <b>función</b> en vez de cadena.
+				</p>
+				<p style="font-size: 75%;">
+					React no genera manejadores de evento por cada nodo. Cuando arranca, escucha todos los eventos en el nivel superior con un simple listener.
+				</p>
+				<br>
+				<p style="font-size: 80%;"><a href="#/72">&lt;&lt; regresar a Partes de un Componentes</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Tipos de Componentes</b></p>
+				<br>
+				<p style="font-size: 80%;">
+					En React existen dos tipos de componentes:
+				</p>
+				<br>
+				<ol>
+					<li>Componentes de Presentación <mark>Stateless</mark></li>
+					<br>
+					<li>Componentes Contenedores <mark>Stateful</mark></li>
+				</ol>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Tipos de Componentes</b></p>
+				<p style="font-size: 120%;"><b>Stateless</b></p>
+				<br>
+				<p style="font-size: 80%;">
+					Los componentes de presentación se limitan a mostrar datos y no tienen estado.
+				</p>
+				<br>
+				<p style="font-size: 80%;">
+					Es preferible que la mayoría de los componentes de una aplicación sean de este tipo porque son más fáciles de manejar.
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Tipos de Componentes</b></p>
+				<p style="font-size: 120%;"><b>Stateless</b></p>
+				<p><b>Características</b></p>
+				<ul style="font-size: 80%;">
+					<li>Orientados al aspecto visual.</li>
+					<li>No tienen dependencia con fuentes de datos.</li>
+					<li>Reciben callbacks por medio de props.</li>
+					<li>Pueden ser escritos como componentes funcionales.</li>
+					<li>No tienen estado.</li>
+				</ul>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Tipos de Componentes</b></p>
+				<p style="font-size: 120%;"><b>Stateful</b></p>
+				<br>
+				<p style="font-size: 80%;">
+					Los componentes contenedores encapsulan a otros componentes y proporcionan propiedades, además se encargan de manejar el estado de la aplicación.
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Tipos de Componentes</b></p>
+				<p style="font-size: 120%;"><b>Stateful</b></p>
+				<p><b>Características</b></p>
+				<ul style="font-size: 80%;">
+					<li>Orientados al funcionamiento de la aplicación.</li>
+					<li>Se comunican con las fuentes de datos.</li>
+					<li>Contienen componentes de presentación y/o otros contenedores.</li>
+					<li>Tienen estado.</li>
+				</ul>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Tipos de Componentes</b></p>
+				<p style="font-size: 120%;"><b>Stateless VS Stateful</b></p>
+				<p style="font-size: 80%;">
+					Este enfoque tiene varias ventajas:
+				</p>
+				<ul style="font-size: 75%;">
+					<li>Favorece la separación de responsabilidades, cada componente debe tener una única tarea.</li>
+					<li>Al tener la lógica de estado y los elementos visuales por separado es más fácil reutilizar los componentes.</li>
+					<li>Se simplifica la tarea de hacer pruebas unitarias.</li>
+					<li>Se mejora el rendimiento de la aplicación.</li>
+					<li>La aplicación es más fácil de entender.</li>
+				</ul>
+				<p style="font-size: 80%;"><a href="#/62">&lt;&lt; regresar a Componentes (I)</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Sintaxis de Componentes</b></p>
+				<br>
+				<p>Podemos escribir componentes con JSX y:</p>
+				<br>
+				<ul style="font-size: 120%;">
+					<li>ES5</li>
+					<li>ES6</li>
+					<li>ES7</li>
+				</ul>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Sintaxis de Componentes</b></p>
+				<p style="font-size: 120%;"><b>con JSX y ES5</b></p>
+				<pre>
+					<code style="font-size: 80%;" class="jsx">
+	var MyComponentStateful = React.createClass({  
+		propTypes: {...},
+		getDefaultProps: {...},
+		getInitialState: function () {...},
+		render: function () {...}
+	})
+
+	var MyComponentStateless = function (props) {  
+		return (...)
+	}
+					</code>
+				</pre>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Sintaxis de Componentes</b></p>
+				<p style="font-size: 120%;"><b>con JSX y ES6</b></p>
+				<pre>
+					<code style="font-size: 80%;" class="jsx">
+	class MyComponentStateful extends React.Component {  
+		constructor (...props) {
+			super(...props)
+			this.state = {...}
+		}
+		render () {...}
+	}
+
+	MyComponentStateful.propTypes = {...}
+	MyComponentStateful.defaultProps = {...}
+
+	const MyComponentStateless = (...props) => {...}
+					</code>
+				</pre>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Sintaxis de Componentes</b></p>
+				<p style="font-size: 120%;"><b>con JSX y ES7</b></p>
+				<pre>
+					<code style="font-size: 80%;" class="jsx">
+	class MyComponentStateful extends React.Component {  
+		static propTypes = {...}
+		static defaultProps = {...}
+		state = {...}
+		constructor (...props) {
+			super(...props);
+		}
+		render () {...}
+	}
+
+	const MyComponentStateless = (...props) => {...}
+					</code>
+				</pre>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Sintaxis de Componentes</b></p>
+				<p style="font-size: 120%;"><b>Diferencias entre ES6 y ES7</b></p>
+				<br>
+				<p style="font-size: 90%;">
+					La implementación de <b><a href="https://github.com/tc39/proposal-class-public-fields" target="_blank">Property Initialiazers</a></b>
+				</p>
+				<p style="font-size: 90%;">
+					Lo que permite que las <mark>defaultProps</mark> y <mark>propTypes</mark> estén incluidas dentro de la definición de la clase. Así como el <mark>state</mark> fuera del método constructor.
+				</p>
+				<p style="font-size: 80%;"><a href="#/62">&lt;&lt; regresar a Componentes (I)</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Interacción entre Componentes</b></p>
+				<h1>Let's to Code! \<div class="carita">XD</div>/</h1>
+				<ul style="font-size: 80%;">
+					<li>Crearemos componentes con estado y sin estado</li>
+					<li>Anidaremos componentes padres e hijos.</li>
+					<li>Recibiremos propiedades.</li>
+					<li>Manejaremos el estado.</li>
+					<li>Propagaremos eventos.</li>
+				</ul>
+				<br>
+				<p style="font-size: 80%;"><a href="#/62">&lt;&lt; regresar a Componentes (I)</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Componentes (II)</b></p>
+				<img src="./img/componentes2.jpg">
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Más de los Componentes</b></p>
+				<p style="font-size: 90%;">
+					Sigamos viendo más cosas sobre los componentes en React:
+				</p>
+				<ul  style="font-size: 90%;">
+					<li><a href="#/101">Ciclo de Vida de los Componentes</a></li>
+					<li><a href="#/111">Componentes Dinámicos</a></li>
+					<li><a href="#/114">Anidamiento de Vistas</a></li>
+					<li><a href="#/118">Encapsulamiento de Librerías</a></li>
+				</ul>
+				<p><a href="#/2">&lt;&lt; regresar al temario</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b><a href="https://facebook.github.io/react/docs/react-component.html#the-component-lifecycle" target="_blank">Ciclo de Vida de los Componentes</a></b></p>
+				<img src="./img/ciclo-de-vida.jpg">
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Ciclo de Vida de los Componentes</b></p>
+				<br>
+				<ul style="font-size: 80%;">
+					<li>Casi todos los componentes de React tienen un ciclo de vida.</li><br>
+					<li>Se dividen en tres tipos: <mark>montaje</mark>, <mark>actualización</mark> y <mark>desmontaje</mark>.</li><br>
+					<li>Ofrece puntos de captura para ejecutar código en cada etapa</li>
+				</ul>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Ciclo de Vida de los Componentes</b></p>
+				<p>
+					<img style='width:24%; vertical-align: top; border: 0;' src='./img/life1.png'><img style='width:24%; vertical-align: top; border: 0;' src='./img/life2.png'><img style='width:24%; vertical-align: top; border: 0;' src='./img/life3.png'><img style='width:24%; vertical-align: top; border: 0;' src='./img/life4.png'>
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Ciclo de Vida de los Componentes</b></p>
+				<p style="font-size: 120%;"><b>Fase de Montaje</b></p>
+				<p style="font-size: 90%;"><b><mark><code>componentWillMount()</code></b></mark></p>
+				<br>
+				<p style="font-size: 80%;">
+					Se ejecuta una vez, tanto en cliente como servidor, inmediatamente antes del primer <code>render()</code>. Si usas <code>setState</code> en este método, <code>render()</code> se ejecutará solo una vez a pesar de haber disparado un cambio de estado.
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Ciclo de Vida de los Componentes</b></p>
+				<p style="font-size: 120%;"><b>Fase de Montaje</b></p>
+				<p style="font-size: 90%;"><b><mark><code>componentDidMount()</code></mark></b></p>
+				<br>
+				<p style="font-size: 80%;">
+					Se ejecuta una vez, sólo en cliente, inmediatamente después del primer <code>render()</code>. Las referencias en el DOM ya existen y es el lugar ideal para hacer peticiones AJAX, integrar librerías externas, crear eventos, poner timers, etc.
+				</p>
+				<p style="font-size: 80%;">
+					El <code>componentDidMount()</code> de los hijos será ejecutado antes que el del padre
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Ciclo de Vida de los Componentes</b></p>
+				<p style="font-size: 120%;"><b>Fase de Actualización</b></p>
+				<p style="font-size: 90%;"><b><mark><code>componentWillReceiveProps(nextProps)</code></mark></b></p>
+				<br>
+				<p style="font-size: 80%;">
+					Se ejecuta cuando el componente reciba nuevas propiedades. No se ejecuta con el primer <code>render()</code>.
+				</p>
+				<p style="font-size: 80%;">
+					Esta función recibe como parámetro las nuevas propiedades, muy útil para hacer comparaciones y actualizar el estado según las propiedades.
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Ciclo de Vida de los Componentes</b></p>
+				<p style="font-size: 120%;"><b>Fase de Actualización</b></p>
+				<p style="font-size: 90%;"><b><mark><code>componentWillUpdate(nextProps, nextState)</code></mark></b></p>
+				<br>
+				<p style="font-size: 80%;">
+					Se ejecuta antes que el componente vaya a renderizarse otra vez con nuevas propiedades o estado. No se ejecuta con el primer <code>render()</code>. Recibe como parámetro las nuevas propiedades y el nuevo estado.
+				</p>
+				<p style="font-size: 80%;">
+					En <code>componentWillUpdate()</code> no se debe usar <code>setState</code> para cambiar el estado o se entrará en un bucle infinito.
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Ciclo de Vida de los Componentes</b></p>
+				<p style="font-size: 120%;"><b>Fase de Actualización</b></p>
+				<p style="font-size: 90%;"><b><mark><code>shouldComponentUpdate(nextProps, nextState)</code></mark></b></p>
+				<br>
+				<p style="font-size: 80%;">
+					Se ejecuta justo antes de volver a renderizarse con las nuevas props y estado. No se ejecuta con el primer <code>render()</code>. 
+				</p>
+				<p style="font-size: 80%;">
+					Esta función recibe como parámetro las nuevas propiedades y el nuevo estado y siempre debe devolver un valor <code>booleano</code>. Por defecto siempre devuelve <code>true</code>.
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Ciclo de Vida de los Componentes</b></p>
+				<p style="font-size: 120%;"><b>Fase de Actualización</b></p>
+				<p style="font-size: 90%;"><b><mark><code>componentDidUpdate(prevProps, prevState)</code></mark></b></p>
+				<br>
+				<p style="font-size: 80%;">
+					Se ejecuta justo después de renderizarse. No se ejecuta con el primer <code>render()</code>. Recibe como parámetro las propiedades y el estado anteriores.
+				</p>
+				<p style="font-size: 80%;">
+					Este es un buen lugar para trabajar con el DOM del componente, porque en este punto tenemos todos los cambios representados con el nuevo <code>render()</code>.
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Ciclo de Vida de los Componentes</b></p>
+				<p style="font-size: 120%;"><b>Fase de Desmontaje</b></p>
+				<p style="font-size: 90%;"><b><mark><code>componentWillUnmount(prevProps, prevState)</code></mark></b></p>
+				<br>
+				<p style="font-size: 80%;">
+					Se ejecuta justo antes que el componente se elimine del DOM.
+				</p>
+				<p style="font-size: 80%;">
+					Especialmente útil para limpiar eventos asignados a las referencias del DOM del componente, eliminar timers y limpiar observables.
+				</p>
+				<p style="font-size: 80%;"><a href="#/100">&lt;&lt; regresar a Componentes (II)</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Componentes Dinámicos</b></p>
+				<p style="font-size: 120%;"><b>(Hijos Dinámicos)</b></p>
+				<img src="./img/componentes-dinamicos.jpg">
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Componentes Dinámicos</b></p>
+				<br>
+				<p>Componentes que renderizan componentes totalmente diferentes según el estado o las propiedades asignadas</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Componentes Dinámicos</b></p>
+				<br>
+				<p>Útiles para renderizar:</p>
+				<ul style="font-size: 90%;">
+					<li>Un componente para cuando no tenemos resultados y otro para cuando sí.</li>
+					<li>Un componente para indicar que estamos cargando el contenido.</li>
+					<li>Una listas de componentes.</li>
+				</ul>
+				<p style="font-size: 80%;"><a href="#/100">&lt;&lt; regresar a Componentes (II)</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Anidamiento de Vistas</b></p>
+				<img src="./img/bart-dry.png">
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Anidamiento de Vistas</b></p>
+				<p style="font-size: 90%;">
+					Gracias a que React es una librería orientada a componentes es muy fácil crear estructuras anidadas como las que harías con HTML.
+				</p>
+				<br>
+				<p style="font-size: 90%;">
+					La gran diferencia con este lenguaje es que en vez de anidar etiquetas, estamos anidando componentes los cuales tienen una funcionalidad ya definida. 
+				</p>
+			</section>
+			<section>
+				<p>Grábatelo en la cabeza como</p>
+				<p>con JavaScript y su <mark>todo es un objeto</mark>...</p>
+				<img src="./img/cereal-guy.png" style="border: 0; background-color: transparent; box-shadow: none; max-width: 30%;">
+				<p>					
+					en React <mark>todo es un componente</mark>.
+				</p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Anidamiento de Vistas</b></p>
+				<p style="font-size: 90%;">Es muy fácil crear estructuras anidadas con React</p>
+				<p style="font-size: 90%;">Ventajas:</p>
+				<ul style="font-size: 80%;">
+					<li>Código más limpio.</li>
+					<li>Reutilizar el máximo código posible.</li>
+					<li>Convertir estructuras complejas en más sencillas y reutilizables.</li>
+				</ul>
+				<p style="font-size: 80%;"><a href="#/100">&lt;&lt; regresar a Componentes (II)</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Encapsulamiento de Librerías</b></p>
+				<img src="./img/capsulas-hoi-poi.jpg">
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Encapsulamiento de Librerías</b></p>
+				<p style="font-size: 90%;">
+					Una de las grandes características de React es que no tienes porque utilizar esta librería en toda tu App.
+				</p>
+				<br>
+				<p style="font-size: 90%;">
+					Utiliza librerías Javascript y conviértelos en componentes
+				</p>
+				<p style="font-size: 80%;"><a href="#/100">&lt;&lt; regresar a Componentes (II)</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Manejo de Rutas</b></p>
+				<p style="font-size: 120%;">con <a href="https://reacttraining.com/react-router/" target="_blank">React Router</a></p>
+				<img src="./img/react-router.png" style="border: 0; background-color: transparent; box-shadow: none;">
+			</section>
+			<section>
+				<p>
+					Los componentes son el corazón del potente modelo de programación declarativo de React. 
+				</p>
+				<br>
+				<p>
+					React Router es una colección de componentes de navegación que componen declarativamente las rutas de las aplicaciones React.
+				</p>
+			</section>
+			<section>
+				<p>
+					React Router funciona, en la web (React)<br>o en apps nativas (React Native).
+				</p>
+				<br>
+				<ul style="font-size: 90%;">
+					<li><a href="https://github.com/ReactTraining/react-router#packages" target="_blank">Versiones</a></li>
+					<li><a href="https://reacttraining.com/react-router/web/guides/quick-start" target="_blank">Documentación</a></li>
+				</ul>
+				<p><a href="#/2">&lt;&lt; regresar al temario</a></p>
+			</section>
+			<section>
+				<a href="https://firebase.google.com/" target="_blank"><img src="./img/firebase-logo.png" style=""></a>
+			</section>
+			<section>
+				<p>
+					Firebase es una plataforma móvil que te permite desarrollar apps de alta calidad con rapidez, aumentar la cantidad de usuarios y ganar más dinero.
+				</p>
+				<br>
+				<p>
+					Firebase contiene funciones complementarias que puedes combinar y adaptar según tus necesidades.
+				</p>
+			</section>
+			<section>
+				<img src="./img/firebase-service.png">
+			</section>
+			<section>
+				<p style="font-size: 150%;"><a href="https://firebase.google.com/" target="_blank"><b>Firebase</b></a></p>
+				<img src="./img/firebase.png" style="border: 0; background-color: transparent; box-shadow: none;">
+				<br>
+				<ul style="font-size: 90%;">
+					<li><a href="https://firebase.google.com/pricing/" target="_blank">Precios</a></li>
+					<li><a href="https://firebase.google.com/features/" target="_blank">Servicios</a></li>
+					<li><a href="https://firebase.google.com/docs/" target="_blank">Documentación</a></li>
+					<li><a href="https://firebase.google.com/docs/cli/" target="_blank">Firebase Tools</a></li>
+				</ul>
+				<p><a href="#/2">&lt;&lt; regresar al temario</a></p>
+			</section>
+			<section>
+				<p style="font-size: 150%;"><b>Mi primer WebApp con React</b></p>
+				<img src="./img/primer-app-react.jpg" style="max-width: 70%;">
+			</section>
+			<section>
+				<h1>Let's to Code & <a href="https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#deployment" target="_blank">Deploy</a>! \<div class="carita">XD</div>/</h1>
+			</section>
+			<section>
+				<h1>Muchas Gracias</h1>
+				<h2>¡Hasta la próxima!</h2>
+				<img src="./img/fox.svg" style="border: 0; background-color: transparent; box-shadow: none;">
+				<p>
+					<a href="http://twitter.com/jonmircha" target="_blank">@jonmircha</a>
+					/ 
+					<a href="mailto:jonmircha@gmail.com" target="_blank">jonmircha@gmail.com</a>
+					/ 
+					<a href="http://jonmircha.com" target="_blank">jonmircha.com</a>
+				</p>
+				<p><a href="#/">&lt;&lt; inicio</a></p>
+			</section>
+		</div>
+	</div>
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true },
+				{ src: 'plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
